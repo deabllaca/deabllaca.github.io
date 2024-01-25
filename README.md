@@ -1,57 +1,152 @@
-<img align="right" width="150" alt="logo" src="https://user-images.githubusercontent.com/5889006/190859553-5b229b4f-c476-4cbd-928f-890f5265ca4c.png">
+# Qubt - Simple Personal Blog Hugo Theme
 
-# Hugo Theme Stack Starter Template
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chrede88/qubt/main/images/screenshot.png" alt="Qubt - Simple Personal Blog Hugo Theme">
+</p>
 
-This is a quick start template for [Hugo theme Stack](https://github.com/CaiJimmy/hugo-theme-stack). It uses [Hugo modules](https://gohugo.io/hugo-modules/) feature to load the theme.
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/chrede88/qubt?color=blue" alt="Release">
+  <img src="https://img.shields.io/badge/min_Hugo-v0.119.0-blue" alt="Hugo version">
+  <img src="https://github.com/Chrede88/qubt/actions/workflows/testBuild.yml/badge.svg" alt="Main Branch Build">
+  <img src="https://github.com/Chrede88/qubt/actions/workflows/buildDeploy.yml/badge.svg" alt="Main Branch Build">
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chrede88/qubt/main/lighthouse/lighthouse_performance.svg" alt="Performace">
+  <img src="https://raw.githubusercontent.com/chrede88/qubt/main/lighthouse/lighthouse_accessibility.svg" alt="Accessibility">
+  <img src="https://raw.githubusercontent.com/chrede88/qubt/main/lighthouse/lighthouse_best-practices.svg" alt="Best Practices">
+  <img src="https://raw.githubusercontent.com/chrede88/qubt/main/lighthouse/lighthouse_seo.svg" alt="SEO">
+</p>
 
-It comes with a basic theme structure and configuration. GitHub action has been set up to deploy the theme to a public GitHub page automatically. Also, there's a cron job to update the theme automatically everyday.
+Qubt is a simple personal blog theme for [Hugo](https://gohugo.io). The theme is designed mobile-first, with a very intuitive interface. Get your Qubt blog up and running quickly by using the [Qubt template](https://github.com/Chrede88/qubtTemplate).
 
-## Get started
+## Screen Dumps
 
-1. Click *Use this template*, and create your repository on GitHub.
-![Step 1](https://user-images.githubusercontent.com/5889006/156916624-20b2a784-f3a9-4718-aa5f-ce2a436b241f.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chrede88/qubt/main/images/screendump.png" alt="Qubt - Simple Personal Blog Hugo Theme">
+</p>
 
-2. Once the repository is created, create a GitHub codespace asociated with it.
-![Create codespace](https://user-images.githubusercontent.com/5889006/156916672-43b7b6e9-4ffb-4704-b4ba-d5ca40ffcae7.png)
+--
 
-3. And voila! You're ready to go. The codespace has been configured with the latest version of Hugo extended, just run `hugo server` in the terminal and see your new site in action.
+## Features
 
-4. Check `config` folder for the configuration files. You can edit them to suit your needs. Make sure to update the `baseurl` property in `config/_default/config.toml` to your site's URL.
-
-5. Once you're done editing the site, just commit it and push it. GitHub action will deploy the site automatically to GitHub page asociated with the repository.
-![GitHub action](https://user-images.githubusercontent.com/5889006/156916881-90b8bb9b-1925-4e60-9d7a-8026cda729bf.png)
+- Simple personal blog theme, designed for mobile-first.
+- Automatic dark mode (based on system setttings).
+- Emoji support for a fun design.
+- Healthcheck endpoint (/healthcheck.json).
 
 ---
 
-In case you don't want to use GitHub codespace, you can also run this template in your local machine. **You need to install Git, Go and Hugo extended locally.**
+## Installation
 
-## Update theme manually
+1) Make sure you have Hugo and Go installed on your local machine. Read the instructions [here](https://gohugo.io/installation/).
+2) Follow this link to the theme [template](https://github.com/Chrede88/qubtTemplate).
+3) Follow the installation instructions in the template repo. They are listed below for reference.
 
-Run:
+### Template installation instructions (Only for reference) 
+1) Use this template by pressing `Use this template`.
+2) Clone your version of the template to your local computer:
+```shell
+git clone https://github.com/<username>/<reponame>
+```
+3) Change the module name to match your github repo in `go.mod`.
+4) Modify `config/_default/hugo.yaml`, `config/_default/params.yaml` and `config/_default/menus.yaml` according to the configuration below.
+5) Add your blog posts to `content/blog/`. See example posts for reference.
+6) Modify `content/about.md` so it matches your preferences.
+7) All images are stored in the `assets/` folder. You can group in subfolders if you like.
+8) In a terminal/commandline window, move to the newly created folder using `cd`.
+9) Build a local version of your site by executing `hugo server`. You can see the site by navigating to `localhost:1313` (actual URL will be outputted in the CLI) in a browser.
+10) Add a new `icon.png` file to update the favicon. The png file should be 512px by 512px in size.
 
-```bash
-hugo mod get -u github.com/CaiJimmy/hugo-theme-stack/v3
-hugo mod tidy
+---
+
+## Configuration
+
+All configuration is done in the four configuration files under `config/_default/`. The URL and site title can be set in `hugo.yaml`. The navbar settings are set in `menus.yaml`. All other parameters are set in `params.yaml`.
+
+`hugo.yaml`:
+```yaml
+baseURL: 'https://username.github.io/qubt'
+title: 'Qubt Theme'
 ```
 
-> This starter template has been configured with `v3` version of theme. Due to the limitation of Go module, once the `v4` or up version of theme is released, you need to update the theme manually. (Modifying `config/module.toml` file)
-
-## Deploy to another static page hostings
-
-If you want to build this site using another static page hosting, you need to make sure they have Go installed in the machine. 
-
-<details>
-  <summary>Vercel</summary>
-  
-You need to overwrite build command to install manually Go:
-
+`menus.yaml`:
+```yaml
+main:
+- name: Home
+  url: /
+  weight: 10
+- name: Blog
+  url: /blog/
+  weight: 20
+- name: About
+  url: /about/
+  weight: 30
 ```
-amazon-linux-extras install golang1.11 && hugo --gc --minify
+
+`params.yaml`:
+```yaml
+############################
+## Author
+############################
+
+author:
+  name: "Qubt"
+  image: author.jpeg
+  greeting: "A personal blog theme for Hugo :evergreen_tree:"
+  icon: ":wave:"
+
+############################
+## Links
+############################
+
+links:
+  - github: https://github.com/username
+  - facebook: https://facebook.com/me
+ 
+
+###############################
+## OpenGraph & Twitter Cards
+###############################
+
+title: "Qubt Theme"
+description: "Demo site build with Qubt & Hugo"
+images:
+  - thumbnail.jpeg
 ```
 
-![](https://user-images.githubusercontent.com/5889006/156917172-01e4d418-3469-4ffb-97e4-a905d28b8424.png)
+Links are defined by the name (i.e. "github" or "facebook"). The names must match one of the supported link icons, see list below.
 
-Make sure also to specify Hugo version in the environment variable `HUGO_VERSION` (Use the latest version of Hugo extended):
+### Supported Social Icons
+| **Supported Icons** | **Supported Icons** | **Supported Icons** | **Supported Icons** |
+| --- | --- | --- | --- |
+| amazon | apple | bandcamp | bitbucket | 
+| bluesky | check-mark | codepen | dev |
+| discord | dribbble | email | etsy |
+| facebook | flickr | foursquare | github |
+| gitlab | google | instagram | keybase |
+| kickstarter | link | linkedin | mastodon |
+| medium | orcid | patreon | paypal | pinterest |
+| reddit | signal | skype | slack |
+| snapchat | soundcloud | spotify | stack-exchange |
+| stack-overflow | strava | telegram | tiktok |
+| tumblr | twitch | untappd | website |
+| whatsapp | windows | x-twitter | youtube |
 
-![Environment variable](https://user-images.githubusercontent.com/5889006/156917212-afb7c70d-ab85-480f-8288-b15781a462c0.png)
-</details>
+
+### Custom Social Icons
+Users can provide their own icons by placing a `.svg` image in `./assets/icons/` in their own repo. Creating folders when necessary. The image should be as circular as possible for the best result. Don't use spaces in the filename! Find all current icons [here](https://github.com/chrede88/qubt/tree/main/assets/icons).
+
+---
+
+## Update the Theme Version
+
+This guide is left here for reference. Please check the [template](https://github.com/Chrede88/qubtTemplate#readme) repo for the most up-to-date documentation.
+
+The theme version used to build the site is defined in `go.mod` file.
+
+The best practice is to update to released and tested versions. To update to a specific version execute the following command in a terminal/commandline (at the root path of your site repo):
+
+```shell
+  hugo mod get github.com/Chrede88/qubt@vX.Y.Z
+```
+Replace X,Y & Z with the corresponding version numbers. You can find the releases [here](https://github.com/Chrede88/qubt/releases). Please check if any breaking changes are listed under the release you want to update to, before proceeding.
